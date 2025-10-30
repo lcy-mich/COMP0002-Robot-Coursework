@@ -1,4 +1,5 @@
 #include "include/robot.h"
+#include "include/grid.h"
 
 //corresponds to the directions enum indices in robot.h
 const Vector DIR_VECTORS[] = {
@@ -6,10 +7,9 @@ const Vector DIR_VECTORS[] = {
 }; 
 
 int canMoveForward(Vector pos_after_movement, char grid[], int grid_size_x, int grid_size_y) {
-    if (
-        ((pos_after_movement.x < grid_size_x) || (pos_after_movement.x >= 0 )) && 
+    if (((pos_after_movement.x < grid_size_x) || (pos_after_movement.x >= 0 )) && 
         ((pos_after_movement.y < grid_size_y) || (pos_after_movement.y >= 0 )) &&
-        (grid[getIndexFromVector(pos_after_movement, grid_size_y)])) {
+        (grid[getIndexFromVector(pos_after_movement, grid_size_y)] == AIR)) {
         return 1;
     }
     return 0;
@@ -18,9 +18,9 @@ int canMoveForward(Vector pos_after_movement, char grid[], int grid_size_x, int 
 void forward(Robot* robot, char grid[], int grid_size_x, int grid_size_y) {
     Vector pos_after_movement = add(robot->pos, DIR_VECTORS[robot->dir]);
     
-    //if (canMoveForward(pos_after_movement, grid, grid_size_x, grid_size_y)) { 
+    if (canMoveForward(pos_after_movement, grid, grid_size_x, grid_size_y)) { 
         robot->pos = pos_after_movement;
-    //}
+    }
 }
 
 //goes to the left element of directions enum and loops back using modulo
@@ -33,6 +33,6 @@ void right(Robot* robot) {
     robot->dir = (robot->dir + 1) % 4;
 }
 
-void atMarker(Vector position) {
-    return ()
+int atMarker(Vector pos, char grid[], int grid_size_y) {
+    return (grid[getIndexFromVector(pos, grid_size_y)] == MARKER);
 }

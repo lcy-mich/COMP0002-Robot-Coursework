@@ -19,7 +19,7 @@
 
     void right(Robot* robot);
 
-    int atMarker(Vector position);
+    int atMarker(Vector pos, char grid[], int grid_size_y);
 
     int canMoveForward(Vector pos_after_movement, char grid[], int grid_size_x, int grid_size_y);
 
