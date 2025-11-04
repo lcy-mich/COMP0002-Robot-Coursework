@@ -1,5 +1,7 @@
 #include <display.h>
 
+#define DEBUG_MODE
+
 int main() {
 
     int grid_side_length = 50;
