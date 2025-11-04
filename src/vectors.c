@@ -1,4 +1,4 @@
-#include "include/vectors.h"
+#include "../inc/vectors.h"
 
 Vector add(Vector a, Vector b) {
     return (Vector){a.x + b.x, a.y + b.y};

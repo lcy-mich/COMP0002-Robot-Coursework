@@ -1,3 +1,4 @@
-#include "include/graphics/graphics.h"
-#include "include/vectors.h"
-#include "include/robot.h"
+#include "../inc/graphics/graphics.h"
+#include "../inc/vectors.h"
+#include "../inc/robot.h"
+

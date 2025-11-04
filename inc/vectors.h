@@ -1,7 +1,7 @@
 #ifndef VECTORS_H
     #define VECTORS_H
 
-    typedef struct vector {
+    typedef struct {
         int x;
         int y;
     } Vector;
