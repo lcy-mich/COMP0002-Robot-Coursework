@@ -1,11 +1,13 @@
 #ifndef ROBOT_H
     #define ROBOT_H
 
-    #include "../inc/vectors.h"
+    #include <vectors.h>
 
     typedef enum {
         LEFT, UP, RIGHT, DOWN
     } Directions;
+
+    // extern const Vector DIR_VECTORS[4]; // corresponds to enum Directions
 
     typedef struct {
         Vector pos;
@@ -13,19 +15,19 @@
         int held_markers;
     } Robot;
 
-    void forward(Robot* robot, char grid[], int grid_size_x, int grid_size_y);
+    void forward(Robot* robot, char grid[], Vector grid_size);
 
     void left(Robot* robot);
 
     void right(Robot* robot);
 
-    int atMarker(Vector pos, char grid[], int grid_size_y);
+    int atMarker(Vector pos, char grid[], Vector grid_size);
 
-    int canMoveForward(Vector pos_after_movement, char grid[], int grid_size_x, int grid_size_y);
+    int canMoveForward(Vector pos_after_movement, char grid[], Vector grid_size);
 
-    void pickUpMarker(Robot* robot, char grid[], int grid_size_x, int grid_size_y);
+    void pickUpMarker(Robot* robot, char grid[], Vector grid_size);
 
-    void dropMarker(Robot* robot, char grid[], int grid_size_y);
+    void dropMarker(Robot* robot, char grid[], Vector grid_size);
 
     int markerCount(Robot* robot);
 

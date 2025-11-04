@@ -1,18 +1,31 @@
-#include "../inc/grid.h"
-#include "../inc/vectors.h"
+#include <grid.h>
 
-int getIndexFromVector(Vector pos, int grid_size_x, int grid_size_y) {
-    if (((pos.x < grid_size_x) && (pos.x >= 0 )) && ((pos.y < grid_size_y) && (pos.y >= 0 ))) {
-        return pos.x + pos.y*grid_size_y;
+int getIndexFromVector(Vector pos, Vector grid_size) {
+
+    if (((pos.x < grid_size.x) && (pos.x >= 0 )) && ((pos.y < grid_size.y) && (pos.y >= 0 ))) {
+        return pos.x + pos.y*grid_size.y;
     }
+
     printf("Error: Invalid position (%f, %f)", pos.x, pos.y);
+    
     return -1;
+
 }
 
-GridObjects getObjectAtPosition(Vector pos, char grid[], int grid_size_x, int grid_size_y) {
-    return grid[getIndexFromVector(pos, grid_size_x, grid_size_y)];
+GridObjects getObjectAtPosition(Vector pos, char grid[], Vector grid_size) {
+
+    return grid[getIndexFromVector(pos, grid_size)];
+
 }
 
-void setObjectAtPosition(GridObjects obj, Vector pos, char grid[], int grid_size_x, int grid_size_y) {
-    grid[getIndexFromVector(pos, grid_size_x, grid_size_y)] = obj;
+// returns true if object has been set
+int setObjectAtPosition(GridObjects obj, Vector pos, char grid[], Vector grid_size) {
+    
+    if (getObjectAtPosition(pos, grid, grid_size) != obj) {
+        grid[getIndexFromVector(pos, grid_size)] = obj;
+        return 1;
+    }
+
+    return 0; 
+
 }

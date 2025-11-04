@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "robot.h": "c",
-        "vectors.h": "c"
+        "vectors.h": "c",
+        "grid.h": "c"
     }
 }
