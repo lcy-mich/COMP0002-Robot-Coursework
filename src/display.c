@@ -77,6 +77,10 @@ void _drawMouseEars(Vector pos, Directions dir, int grid_side_length) {
 
 }
 
+void _drawSquare(Vector pos, int grid_side_length) {
+    fillRect(pos.x*grid_side_length, pos.y*grid_side_length, grid_side_length, grid_side_length);
+}
+
 void drawGrid(int grid_side_length, Vector grid_size) {
 
     for (int x = grid_side_length - 1; x < grid_side_length*grid_size.x - 1; x+=grid_side_length) {
@@ -89,12 +93,10 @@ void drawGrid(int grid_side_length, Vector grid_size) {
 
 }
 
-void drawMarker(Vector pos, int grid_side_length){
+void drawMarker(Vector pos, int grid_side_length) {
 
     setColour(orange);
     _drawCheese(pos, grid_side_length);
-
-    setColour(black);
 
 }
 
@@ -106,7 +108,12 @@ void drawRobot(Vector pos, Directions dir, int grid_side_length) {
     setColour(pink);
     _drawMouseEars(pos, dir, grid_side_length);
 
-    setColour(black);
+}
+
+void drawWall(Vector pos, int grid_side_length) {
+
+    setColour(darkgray);
+    _drawSquare(pos, grid_side_length);
 
 }
 
