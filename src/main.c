@@ -1,6 +1,6 @@
-#include <display.h>
-
 #define DEBUG_MODE
+
+#include <display.h>
 
 int main() {
 
