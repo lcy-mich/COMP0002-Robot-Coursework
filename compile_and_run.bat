@@ -1,2 +1,2 @@
-gcc -Wall -Wextra -fsanitize=address -O2 main "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"
+gcc -Wall -Wextra -o main "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"
 main.exe "example_maps\map_1.txt" | java -jar "drawapp.4.5\drawapp-4.5.jar"

@@ -217,10 +217,17 @@ Vector getVector_HashTable(Vector key, LinkedList* table[], int table_size) {
 
 void cleanup_HashTable(LinkedList* table[], int table_size) {
 
+    if (!table) {
+        return;
+    }
+
     for (int i = 0; i < table_size; i++) {
 
-        Node* element = table[i]->head;
+        if (!table[i]) { 
+            continue;
+        }
 
+        Node* element = table[i]->head;
         while (element) {
             Node* next = element->next;
             free(element);
@@ -269,6 +276,10 @@ float calculateHeuristic(Vector pos, Vector dest) {
 // alias of cleanup_HashTable
 void freePath(LinkedList* path[], int table_size) {
     cleanup_HashTable(path, table_size);
+    
+    if (path) { 
+        free(path);
+    }
 }
 
 void followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Vector grid_size) {

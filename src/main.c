@@ -25,7 +25,7 @@ void update(Robot* robot, int table_size, int grid[], Vector grid_size, Vector* 
 
     if (*total_markers > 0) {
         if (equals(robot->current_target, NULL_VECTOR) || getObjectAtPosition(robot->current_target, grid, grid_size) != MARKER) {
-            message("GOOOOOOOODDDDDDDDDDDDDD DAAAAAAAAAAAAAAAAAAAAAAAAAYUUUUUUUUUUMN");
+            //message("GOOOOOOOODDDDDDDDDDDDDD DAAAAAAAAAAAAAAAAAAAAAAAAAYUUUUUUUUUUMN");
             robot->current_target = getClosestMarkerPosition(robot->pos, marker_pos, *total_markers);
             *path = pathfind(robot, robot->current_target, table_size, grid, grid_size);
         }
@@ -35,6 +35,7 @@ void update(Robot* robot, int table_size, int grid[], Vector grid_size, Vector* 
         if (atMarker(*robot, grid, grid_size)) {
             pickUpMarker(robot, grid, grid_size);
             freePath(*path, table_size);
+            *path = NULL;
 
             for (int marker_index = 0; marker_index < *total_markers; marker_index++) {
                 if (equals(marker_pos[marker_index], robot->pos)) {
@@ -47,7 +48,6 @@ void update(Robot* robot, int table_size, int grid[], Vector grid_size, Vector* 
         
     }
     else {
-        free(marker_pos);
         *finished = 0;
     }
 
@@ -104,5 +104,7 @@ int main(int argc, char** argv) {
         renderRobot(robot, grid_side_length);
         sleep(100);
     }
+    free(marker_pos);
+    marker_pos = NULL;
     return 0;
 }
