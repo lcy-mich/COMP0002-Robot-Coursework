@@ -3,9 +3,13 @@
 
     #include <robot.h>
     #include <graphics.h>
+
+    void drawGrid(int grid_side_length, Vector grid_size);
     
-    void initialise(int grid_side_length, Vector grid_side);
-    
+    void renderGrid(int grid[], int grid_side_length, Vector grid_size);
+    void renderObjects(int grid[], int grid_side_length, Vector grid_size);
+    void renderRobot(Robot robot, int grid_side_length);
+
     #ifdef DEBUG_MODE
         void drawMarker(Vector pos, int grid_side_length);
         void drawRobot(Vector pos, Directions dir, int grid_side_length);

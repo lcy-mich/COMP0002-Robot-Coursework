@@ -1,5 +1,8 @@
 #include <display.h>
 
+#define OUTER_WALL_THICKNESS 5
+#define INNER_WALL_THICKNESS 1
+
 //hard-coded cheese body
 void _drawCheese(Vector pos, int grid_side_length) {
     fillPolygon(
@@ -83,6 +86,10 @@ void _drawSquare(Vector pos, int grid_side_length) {
 
 void drawGrid(int grid_side_length, Vector grid_size) {
 
+    setLineWidth(OUTER_WALL_THICKNESS);
+    drawRect(0, 0, grid_side_length*grid_size.x, grid_side_length*grid_size.y);
+    setLineWidth(INNER_WALL_THICKNESS);
+
     for (int x = grid_side_length - 1; x < grid_side_length*grid_size.x - 1; x+=grid_side_length) {
         drawLine(x, 0, x, grid_side_length*grid_size.y - 1);
     }
@@ -117,7 +124,31 @@ void drawWall(Vector pos, int grid_side_length) {
 
 }
 
-void initialise(int grid_side_length, Vector grid_size) {
+void renderObjects(int grid[], int grid_side_length, Vector grid_size) {
+    for (int y = 0; y < grid_size.y; y++) {
+        for (int x = 0; x < grid_size.x; x++) {
+
+            Vector pos = {x, y};
+
+            switch (getObjectAtPosition(pos, grid, grid_size)) {
+                case AIR:
+                    break;
+                case WALL:
+                    drawWall(pos, grid_side_length);
+                    break;
+                case MARKER:
+                    drawMarker(pos, grid_side_length);
+                    break;
+            }
+        }
+    }
+}
+
+void renderRobot(Robot robot, int grid_side_length) {
+    drawRobot(robot.pos, robot.dir, grid_side_length);
+}
+
+void renderGrid(int* grid, int grid_side_length, Vector grid_size) {
 
     setWindowSize(grid_side_length*grid_size.x, grid_side_length*grid_size.y);
 
@@ -125,5 +156,6 @@ void initialise(int grid_side_length, Vector grid_size) {
     drawGrid(grid_side_length, grid_size);
 
     foreground();
+    renderObjects(grid, grid_side_length, grid_size);
 
 }

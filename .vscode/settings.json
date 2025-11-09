@@ -2,6 +2,20 @@
     "files.associations": {
         "robot.h": "c",
         "vectors.h": "c",
-        "grid.h": "c"
+        "grid.h": "c",
+        "graphics.h": "c",
+        "array": "c",
+        "cmath": "c",
+        "random": "c",
+        "numbers": "c",
+        "charconv": "c",
+        "optional": "c",
+        "ranges": "c",
+        "system_error": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "limits.h": "c"
     }
 }

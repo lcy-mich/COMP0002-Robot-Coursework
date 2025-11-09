@@ -1,16 +1,13 @@
 #include <robot.h>
-#include <grid.h>
 
-//corresponds to the directions enum indices in robot.h
-const Vector DIR_VECTORS[4] = {
+int canMoveForward(Robot robot, int grid[], Vector grid_size) {
 
-    {-1, 0}, {0, -1}, {1, 0}, {0, 1} //LEFT, UP, RIGHT, DOWN
+    Vector pos_after_movement = add(robot.pos, getVectorFromDirection(robot.dir));
 
-}; 
+    if ((getObjectAtPosition(pos_after_movement, grid, grid_size) != WALL) &&
+        (pos_after_movement.x >= 0 && pos_after_movement.x < grid_size.x) &&
+        (pos_after_movement.y >= 0 && pos_after_movement.y < grid_size.y)) {
 
-int canMoveForward(Vector pos_after_movement, char grid[], Vector grid_size) {
-
-    if (getObjectAtPosition(pos_after_movement, grid, grid_size) == AIR) {
         return 1;
     }
 
@@ -18,12 +15,10 @@ int canMoveForward(Vector pos_after_movement, char grid[], Vector grid_size) {
 
 }
 
-void forward(Robot* robot, char grid[], Vector grid_size) {
-
-    Vector pos_after_movement = add(robot->pos, DIR_VECTORS[robot->dir]);
-    
-    if (canMoveForward(pos_after_movement, grid, grid_size)) { 
-        robot->pos = pos_after_movement;
+void forward(Robot* robot, int grid[], Vector grid_size) {
+ 
+    if (canMoveForward(*robot, grid, grid_size)) { 
+        robot->pos = add(robot->pos, getVectorFromDirection(robot->dir));
     }
 
 }
@@ -31,26 +26,34 @@ void forward(Robot* robot, char grid[], Vector grid_size) {
 //goes to the left element of directions enum and loops back using modulo
 void left(Robot* robot) {
 
-    robot->dir = (robot->dir --) % 4;
+    robot->dir = (robot->dir + 3) % 4;
 
 } 
 
 //goes to the right element of directions enum and loops back using modulo
 void right(Robot* robot) {
 
-    robot->dir = (robot->dir ++) % 4;
+    robot->dir = (robot->dir + 1) % 4;
 
 }
 
-int atMarker(Vector pos, char grid[], Vector grid_size) {
+int atMarker(Robot robot, int grid[], Vector grid_size) {
 
-    return getObjectAtPosition(pos, grid, grid_size) == MARKER;
+    return getObjectAtPosition(robot.pos, grid, grid_size) == MARKER;
 
 }
 
-void dropMarker(Robot* robot, char grid[], Vector grid_size) {
+void pickUpMarker(Robot* robot, int grid[], Vector grid_size) {
+    
+    if (atMarker(*robot, grid, grid_size)) {
+        setObjectAtPosition(AIR, robot->pos, grid, grid_size);
+        robot->held_markers++;
+    }
+}
 
-    if (setObjectAtPosition(MARKER, robot->pos, grid, grid_size)) {
+void dropMarker(Robot* robot, int grid[], Vector grid_size) {
+
+    if (!atMarker(*robot, grid, grid_size) && setObjectAtPosition(MARKER, robot->pos, grid, grid_size)) {
         robot->held_markers--;
     }
 
