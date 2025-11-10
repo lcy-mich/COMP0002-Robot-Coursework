@@ -2,7 +2,7 @@
 Robot maze-solver/ path-finder Coursework for Principles of Programming COMP0002.
 
 ## Description
-Here is little rat 🐀, he is hungry and wants cheese 🧀.
+Here is a little rat 🐀, he is hungry and wants cheese 🧀.
 
 Oh goodie 🤤, it's a bunch of markers made of cheese for him to collect, buffet-style 😋.
 
@@ -11,6 +11,12 @@ Oh goodie 🤤, it's a bunch of markers made of cheese for him to collect, buffe
 Handrolling a priority queue (implemented with a binary heap), and hashtables (with separate chaining for collision handling), our little rat friend 🐀 uses the A* path-finding algorithm with the euclidean distance between him and the closest cheese 🧀 as his heuristic and target. yum yum yum 🤩🤗!!
 
 What? This isn't optimal? Travelling salesman problem? What are you on about?! The rat does not concern himself with optimal route planning and instead follows nearest-neighbour (not really, if you consider travelling cost rather than physical distance).
+
+---
+
+Map generation works by randomly placing 'seeds' which will grow outwards by a certain length specified in the source-code (maploader.c) as macro definitions.
+
+This works most of the times, however there are no checks for whether every piece of cheese is reachable/ whether the graph is connected, and so the rat will only pick up the markers within reach.
 
 ---
 
