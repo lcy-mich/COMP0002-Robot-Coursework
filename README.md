@@ -113,4 +113,6 @@ The rest of the lines is map data.
 - `$` character corresponds to a marker/ cheese
 - `<`, `>`, `^`, `v` characters correspond to the rat and its starting direction respectively (left, right, up, down)
 
+Please refer to the `example_maps\` directory for map examples.
+
 
