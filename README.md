@@ -8,7 +8,7 @@ Oh goodie 🤤, it's a bunch of markers made of cheese for him to collect, buffe
 
 ---
 
-Handrolling a priority queue (implemented with a binary heap), and hashtables (with separate chaining for collision handling), our little rat friend 🐀 uses the A* path-finding algorithm with the euclidean distance between him and the closest cheese 🧀 as his target. yum yum yum 🤩🤗!!
+Handrolling a priority queue (implemented with a binary heap), and hashtables (with separate chaining for collision handling), our little rat friend 🐀 uses the A* path-finding algorithm with the euclidean distance between him and the closest cheese 🧀 as his heuristic and target. yum yum yum 🤩🤗!!
 
 What? This isn't optimal? Travelling salesman problem? What are you on about?! The rat does not concern himself with optimal route planning and instead follows nearest-neighbour (not really, if you consider travelling cost rather than physical distance).
 
