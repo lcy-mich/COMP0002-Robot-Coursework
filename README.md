@@ -14,9 +14,9 @@ What? This isn't optimal? Travelling salesman problem? What are you on about?! T
 
 ---
 
-Map generation works by randomly placing 'seeds' which will grow outwards by a certain length specified in the source-code (maploader.c) as macro definitions.
+Map generation works by randomly placing 'seeds' which will grow the walls outwards by a certain length specified in the source-code (maploader.c) as macro definitions.
 
-This works most of the times, however there are no checks for whether every piece of cheese is reachable/ whether the graph is connected, and so the rat will only pick up the markers within reach.
+This works most of the time, however there are no checks for whether every piece of cheese is reachable/ whether the graph is connected, and so the rat will only pick up the markers within reach.
 
 ---
 
