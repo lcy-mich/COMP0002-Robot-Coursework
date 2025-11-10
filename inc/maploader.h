@@ -3,7 +3,6 @@
 
     #include <grid.h>
     #include <robot.h>
-    #include <stdlib.h>
 
     #define BUFFER_SIZE 512
 

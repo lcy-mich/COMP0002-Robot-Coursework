@@ -1,0 +1,1 @@
+gcc -Wall -Wextra -o main "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"

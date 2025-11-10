@@ -49,6 +49,7 @@ void pickUpMarker(Robot* robot, int grid[], Vector grid_size) {
         setObjectAtPosition(AIR, robot->pos, grid, grid_size);
         robot->held_markers++;
     }
+    
 }
 
 void dropMarker(Robot* robot, int grid[], Vector grid_size) {

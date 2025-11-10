@@ -1,2 +1,0 @@
-gcc -Wall -Wextra -o main "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"
-main.exe  | java -jar "drawapp.4.5\drawapp-4.5.jar"

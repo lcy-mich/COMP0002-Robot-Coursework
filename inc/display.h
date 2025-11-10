@@ -7,7 +7,9 @@
     void drawGrid(int grid_side_length, Vector grid_size);
     
     void renderGrid(int grid[], int grid_side_length, Vector grid_size);
+
     void renderObjects(int grid[], int grid_side_length, Vector grid_size);
+
     void renderRobot(Robot robot, int grid_side_length);
 
     #ifdef DEBUG_MODE

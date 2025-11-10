@@ -1,7 +1,9 @@
 #ifndef VECTORS_H
+
     #define VECTORS_H
 
     #include <limits.h>
+
     #define NULL_VECTOR (Vector){-INT_MAX, -INT_MAX}
     #define DIR_AMOUNT 4
 
@@ -14,8 +16,6 @@
         LEFT, UP, RIGHT, DOWN
     } Directions;
 
-    extern const Vector DIR_VECTORS[DIR_AMOUNT];
-
     Vector getVectorFromDirection(Directions dir);
 
     Directions getDirectionFromString(char*);
@@ -27,8 +27,6 @@
     Vector sub(Vector, Vector);
 
     Vector neg(Vector);
-
-    Vector scale(float, Vector);
 
     int equals(Vector, Vector);
 

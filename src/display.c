@@ -5,6 +5,7 @@
 
 //hard-coded cheese body
 void _drawCheese(Vector pos, int grid_side_length) {
+
     fillPolygon(
         3, 
         (int[3]){
@@ -18,10 +19,12 @@ void _drawCheese(Vector pos, int grid_side_length) {
             (1 + pos.y)*grid_side_length - 1 - .15*grid_side_length/2
         }
     );
+
 }
 
 //hard-coded mouse body
 void _drawMouseBody(Vector pos, Directions dir, int grid_side_length) {
+
     int is_vertical = dir % 2; // returns 1 if enum is in a vertical direction
     
     //swap x and y to turn verticals
@@ -54,10 +57,12 @@ void _drawMouseBody(Vector pos, Directions dir, int grid_side_length) {
         y, 
         width, height 
     );
+
 }
 
 //hard-coded mouse ears
 void _drawMouseEars(Vector pos, Directions dir, int grid_side_length) {
+
     int is_vertical = dir % 2;
     
     //swap x and y if vertical
@@ -87,7 +92,9 @@ void _drawSquare(Vector pos, int grid_side_length) {
 void drawGrid(int grid_side_length, Vector grid_size) {
 
     setLineWidth(OUTER_WALL_THICKNESS);
+
     drawRect(0, 0, grid_side_length*grid_size.x, grid_side_length*grid_size.y);
+
     setLineWidth(INNER_WALL_THICKNESS);
 
     for (int x = grid_side_length - 1; x < grid_side_length*grid_size.x - 1; x+=grid_side_length) {
@@ -103,6 +110,7 @@ void drawGrid(int grid_side_length, Vector grid_size) {
 void drawMarker(Vector pos, int grid_side_length) {
 
     setColour(orange);
+
     _drawCheese(pos, grid_side_length);
 
 }
@@ -110,9 +118,11 @@ void drawMarker(Vector pos, int grid_side_length) {
 void drawRobot(Vector pos, Directions dir, int grid_side_length) {
     
     setColour(gray);
+
     _drawMouseBody(pos, dir, grid_side_length);
 
     setColour(pink);
+    
     _drawMouseEars(pos, dir, grid_side_length);
 
 }
@@ -120,28 +130,38 @@ void drawRobot(Vector pos, Directions dir, int grid_side_length) {
 void drawWall(Vector pos, int grid_side_length) {
 
     setColour(darkgray);
+
     _drawSquare(pos, grid_side_length);
 
 }
 
 void renderObjects(int grid[], int grid_side_length, Vector grid_size) {
+
     for (int y = 0; y < grid_size.y; y++) {
+
         for (int x = 0; x < grid_size.x; x++) {
 
             Vector pos = {x, y};
 
             switch (getObjectAtPosition(pos, grid, grid_size)) {
+
                 case AIR:
                     break;
+
                 case WALL:
                     drawWall(pos, grid_side_length);
                     break;
+
                 case MARKER:
                     drawMarker(pos, grid_side_length);
                     break;
+
             }
+
         }
+
     }
+    
 }
 
 void renderRobot(Robot robot, int grid_side_length) {

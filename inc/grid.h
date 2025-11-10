@@ -1,4 +1,5 @@
 #ifndef GRID_H
+
     #define GRID_H
     
     #include <vectors.h>
@@ -12,4 +13,5 @@
     int setObjectAtPosition(GridObjects obj, Vector pos, int grid[], Vector grid_size);
 
     void clearGrid(int grid[], Vector grid_size);
+
 #endif 
