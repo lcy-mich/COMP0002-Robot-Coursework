@@ -1,5 +1,4 @@
 #include <grid.h>
-#include <string.h>
 
 int getIndexFromVector(Vector pos, Vector grid_size) {
 

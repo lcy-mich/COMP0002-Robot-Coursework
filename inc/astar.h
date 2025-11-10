@@ -32,6 +32,9 @@
     } LinkedList;
 
     LinkedList** pathfind(Robot* robot, Vector dest, int table_size, int grid[], Vector grid_size);
-    void followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Vector grid_size);
+    int followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Vector grid_size);
+    
     void freePath(LinkedList* path[], int table_size);
+
+    Vector getClosestMarkerPosition(Vector pos, Vector* marker_pos, int total_markers);
 #endif

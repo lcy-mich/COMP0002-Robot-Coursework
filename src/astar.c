@@ -1,7 +1,8 @@
 #include <astar.h>
 #include <graphics.h>
+
 #include <stdlib.h>
-#include <limits.h>
+#include <float.h>
 
 // priority queue
 
@@ -175,6 +176,8 @@ int remove_LinkedList(Vector key, LinkedList* list) {
     }
 
     free(element_to_remove);
+    element_to_remove = NULL;
+
     list->length--;
 
     return 1;
@@ -235,6 +238,7 @@ void cleanup_HashTable(LinkedList* table[], int table_size) {
         }
 
         free(table[i]);
+        table[i] = NULL;
 
     }
 }
@@ -274,15 +278,15 @@ float calculateHeuristic(Vector pos, Vector dest) {
 }
 
 // alias of cleanup_HashTable
-void freePath(LinkedList* path[], int table_size) {
-    cleanup_HashTable(path, table_size);
-    
+void freePath(LinkedList* path[], int table_size) {    
     if (path) { 
+        cleanup_HashTable(path, table_size);
         free(path);
+        path = NULL;
     }
 }
 
-void followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Vector grid_size) {
+int followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Vector grid_size) {
 
     Vector next_vector = getVector_HashTable(robot->pos, path, table_size);
 
@@ -299,6 +303,10 @@ void followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Ve
                 left(&dummy_robot);
             }
             forward(&dummy_robot, grid, grid_size);
+
+            if (turn_amount > DIR_AMOUNT)  {
+                return 0;
+            }
         }
 
         for (int turns = 0; turns < turn_amount; turns++) {
@@ -306,8 +314,9 @@ void followPath(Robot* robot, LinkedList* path[], int table_size, int grid[], Ve
         }
         forward(robot, grid, grid_size);
         
-        return;
+        return 1;
     }
+    return 0;
 }
 
 // calculates path starting from goal to robot then removes
@@ -348,7 +357,7 @@ LinkedList** pathfind(Robot* robot, Vector dest, int table_size, int grid[], Vec
 
         // assign values for all neighbours
         for (int dir_index = 0; dir_index < 4; dir_index++) {
-            Vector neighbour_pos = add(current_pos, DIR_VECTORS[dir_index]);
+            Vector neighbour_pos = add(current_pos, getVectorFromDirection(dir_index));
 
             GridObjects object = getObjectAtPosition(neighbour_pos, grid, grid_size);
             if (object != AIR && object != MARKER) {
@@ -372,4 +381,19 @@ LinkedList** pathfind(Robot* robot, Vector dest, int table_size, int grid[], Vec
     }
     cleanup_HashTable(cost, table_size);
     return came_from;
+}
+
+Vector getClosestMarkerPosition(Vector pos, Vector* marker_pos, int total_markers){
+
+    Vector closest;
+    float least_dist = FLT_MAX;
+    for (int i = 0; i < total_markers; i++) {
+        float dist = distance(marker_pos[i], pos);
+        if (dist <= least_dist) {
+            closest = marker_pos[i];
+            least_dist = dist;
+        }
+    }
+    return closest;
+
 }

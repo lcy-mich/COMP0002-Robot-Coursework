@@ -2,7 +2,7 @@
 #include <math.h>
 
 //corresponds to the directions enum indices in vectors.h
-const Vector DIR_VECTORS[4] = {
+const Vector DIR_VECTORS[DIR_AMOUNT] = {
 
     {-1, 0}, {0, -1}, {1, 0}, {0, 1} //LEFT, UP, RIGHT, DOWN
 
