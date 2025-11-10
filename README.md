@@ -51,7 +51,7 @@ Before compiling please ensure the file hierarchy looks like so:
 ```
 To compile this program, run the following:
 
-`gcc -o main "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"`
+`gcc -o robot_maze_solver "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"`
 
 or alternatively for Windows users:
 
@@ -86,7 +86,7 @@ To run by loading your own map file, use the command
 
 ---
 
-Assuming that the file hierarchy is the same as the original, the following commands should compile and run the program on map generation mode:
+Assuming that the file hierarchy is the same as the original, the following commands should compile and run the program on map generation mode for Windows:
 
 ```
 gcc -o robot_maze_solver "src\main.c" "src\robot.c" "src\vectors.c" "src\display.c" "src\astar.c" "src\grid.c" "src\maploader.c" "graphics\graphics.c" -I"inc" -I"graphics"
